@@ -2,7 +2,7 @@
 ssh/* 
 
 # Ignore Terraform provider files
-.terraform/
+.terraform/*
 .terraform.lock.hcl
 
 ###############################################################
