@@ -1,42 +1,40 @@
-# AWS Static Website with Terraform
+# 🌐 AWS Static Website Deployment with Terraform
 
-This Terraform project sets up a **fully automated static website** on AWS with:
-- ✅ S3 for website hosting
-- ✅ CloudFront for global content delivery
-- ✅ Route 53 for custom domain management
-- ✅ ACM for SSL certificate (HTTPS)
+This Terraform project **automates the deployment of a static website** on AWS using:
 
-## Deployment Steps 
+- ✅ **Amazon S3** for static website hosting
+- ✅ **Amazon CloudFront** for global content delivery (CDN)
+- ✅ **Amazon Route 53** for custom domain management
+- ✅ **AWS Certificate Manager (ACM)** for HTTPS/SSL security
 
-```sh 
-git clone https://github.com/vlDimo/static_website_S3_bucket.git
-cd static_website_S3_bucket 
-terraform init
-terraform plan
-terraform apply -auto-approve
+---
 
-## ❌ Troubleshooting
+## 📌 **Project Overview**
+This infrastructure-as-code (IaC) setup allows you to deploy a **cost-effective, highly scalable, and secure** static website using AWS services. The website is globally distributed via **CloudFront** with **SSL/TLS encryption** and a **custom domain** managed through Route 53.
 
-### ❗ My domain is not resolving
-**Possible Cause:** Your domain is not yet approved by EU.org.  
-**Solution:** Run this command to check:
+---
+
+## 🚀 **Deployment Guide**
+### **🔹 Prerequisites**
+Before deploying, ensure you have:
+- [Terraform](https://developer.hashicorp.com/terraform/downloads) installed.
+- An [AWS account](https://aws.amazon.com/free/) with programmatic access configured.
+- A **domain** registered via [EU.org](https://nic.eu.org/) or another provider.
+- Proper IAM permissions to manage **S3, CloudFront, Route 53, and ACM**.
+
+### **🔹 Steps to Deploy**
+Run the following commands in your terminal:
+
 ```sh
-nslookup -type=NS yourdomain.eu.org 8.8.8.8
-## If you see NXDOMAIN, wait 24-48 hours for approval
+# Clone the repository
+git clone https://github.com/vlDimo/static_website_S3_bucket.git
+cd static_website_S3_bucket
 
-# ❗ My website is not using HTTPS
-Possible Cause: The SSL certificate is not deployed.
-Solution: Ensure the certificate is created in us-east-1 and is validated in ACM.
+# Initialize Terraform
+terraform init
 
-# ❗ Terraform says "AccessDenied"
-Possible Cause: Your IAM user doesn’t have permissions.
-Solution: Attach this policy in IAM:
+# Preview changes before applying
+terraform plan
 
-json
-Kopieren
-Bearbeiten
-{
-    "Effect": "Allow",
-    "Action": "route53:*",
-    "Resource": "*"
-}
+# Deploy infrastructure automatically
+terraform apply -auto-approve
